@@ -47,4 +47,33 @@ public class Freezer {
     public FridgeDoor getFridgeDoor() {
         return fridgeDoor;
     }
+    
+    public void printFreezerStatus(){
+        
+        System.out.println(name + ":\n");
+        boolean isDrawerEmpty = true;
+        int index = 1;
+        
+        for (Drawer drawer : drawers) {
+        
+            if (!isDrawerEmpty){
+            
+                for (Food food : drawer.foods) {
+                
+                    if (food instanceof Food) {
+                    
+                        isDrawerEmpty = false;
+                        System.out.println(" " + index + ". " + food.getName() + " " + food.expDate);
+                        index++;
+                    
+                    }
+                }
+            }  else {
+            
+                System.out.println(" " + index + ". drawer is empty.");
+                index++;
+            }
+        
+        }
+    }
 }

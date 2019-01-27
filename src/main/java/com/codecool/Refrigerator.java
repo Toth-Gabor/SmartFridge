@@ -60,5 +60,7 @@ public class Refrigerator {
         System.out.println("The " + color + " " + brand + " 3000 smart fridge status:\n");
         System.out.println("  Temperature: " + getTemp() + "\n");
         cooler.printCoolerStatus();
+        System.out.println();
+        freezer.printFreezerStatus();
     }
 }
