@@ -5,13 +5,16 @@ package com.codecool;
 public class Main {
     
     public static void main(String[] args) {
-        Drink drink = new Drink("Soproni", "Sör", "2019/10/02");
+        /*Drink drink = new Drink("Soproni", "Sör", "2019/10/02");
         Meal meal = new Meal("Lecsó", "meleg kaja", "2019/10/04");
         Menu menu = new Menu();
         menu.showMenu();
 
         System.out.println(drink.getExpDate());
-        System.out.println(meal.getName());
-        
+        System.out.println(meal.getName());*/
+    
+        Refrigerator fridge = new Refrigerator("Samsung", "Silver", 7);
+        fridge.printFridgeStatus();
+        //System.out.println(fridge.toString());
     }
 }

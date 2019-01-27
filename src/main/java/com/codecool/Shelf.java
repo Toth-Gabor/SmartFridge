@@ -1,26 +1,22 @@
 package com.codecool;
 
-/**
- * Shelf
- */
-public class Shelf 
+import java.util.List;
+
+public class Shelf
 {
     protected int limit;
-    //protected Food[] foods;
-
-    public Shelf()
-    {
+    protected Food[] foods;
+    
+    public Shelf() {
         this.limit = 5;
-        // foods = new Food[0];
+        this.foods = new Food[limit];
     }
-    public void add(Food food)
-    {
-        // if (foods.length < limit) 
-        // {
-        //     Food[] f = new Food[foods.length + 1]; 
-        //     //f[0] = 
-        // } else {
-        //     //throw FullShelfException;
-        // }
+    
+    public int getLimit() {
+        return limit;
+    }
+    
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 }

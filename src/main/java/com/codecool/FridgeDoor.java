@@ -1,11 +1,11 @@
 package com.codecool;
 
-/**
- * FridgeDoor
- */
-public class FridgeDoor 
-{
-    protected Shelf[] shelfs;
+import java.util.ArrayList;
+import java.util.List;
+
+public class FridgeDoor {
+    
+    protected List<Shelf> shelfs;
     protected int shelfLimit;
     protected boolean doorPosition;
 
@@ -13,9 +13,10 @@ public class FridgeDoor
     {
         this.doorPosition = false;
         this.shelfLimit = 5;
-        for (int i = 0; i < shelfLimit; i++) 
-        {
-            shelfs[i] = new Shelf();
+        this.shelfs =  new ArrayList<>();
+        
+        for (int i = 0; i < shelfLimit; i++) {
+            shelfs.add(new Shelf());
         }
     }
     public String getDoorPosition()

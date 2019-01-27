@@ -4,13 +4,12 @@ abstract class Food {
 
     protected String expDate;
     protected String name;
-
-    public Food(String name, String expDate)
-    {
-        this.name = name;
+    
+    public Food(String expDate, String name) {
         this.expDate = expDate;
-        
+        this.name = name;
     }
+    
     public String getName()
     {
        return this.name; 
