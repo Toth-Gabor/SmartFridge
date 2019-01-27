@@ -5,18 +5,15 @@ import java.util.List;
 
 public class Cooler {
     
-    protected String name;
     protected int drawerLimit;
     protected int shelfLimit;
     protected boolean fridgeLamp;
     protected List<Drawer> drawers;
     protected List<Shelf> shelfs;
-    protected FridgeDoor fridgeDoor;
     
     
     public Cooler() {
     
-        this.name = "Cooler";
         this.shelfLimit = 4;
         this.drawerLimit = 3;
         this.fridgeLamp = false;
@@ -31,16 +28,11 @@ public class Cooler {
             {
                 shelfs.add(new Shelf());
             }
-            this.fridgeDoor = new FridgeDoor();
             
         } catch (NullPointerException e){
     
             e.printStackTrace();
         }
-    }
-    
-    public String getName() {
-        return name;
     }
     
     public int getDrawerLimit() {
@@ -60,14 +52,10 @@ public class Cooler {
         return shelfs;
     }
     
-    public FridgeDoor getFridgeDoor() {
-        return fridgeDoor;
-    }
-    
     public void printCoolerStatus(){
         boolean isShelfEmpty = true;
         
-        System.out.println(name + ":\n");
+        System.out.println("Cooler: \n");
         try {
     
             int count = 1;
@@ -81,9 +69,8 @@ public class Cooler {
                         if (food instanceof Food) {
                             
                             isShelfEmpty = false;
-                            System.out.println(" " + count + ". " + food.getName() + " " + food.expDate);
+                            System.out.println(" " + count + ". " + food.getBrand() + " " + food.getExpDate());
                             count++;
-            
                         }
                     }
                 } else {
@@ -91,6 +78,8 @@ public class Cooler {
                     count++;
                 }
             }
+            System.out.println();
+    
             boolean isDrawerEmpty = true;
             int index = 1;
             for (Drawer drawer : drawers) {
@@ -102,9 +91,8 @@ public class Cooler {
                         if (food instanceof Food) {
                             
                             isDrawerEmpty = false;
-                            System.out.println(" " + index + ". " + food.getName() + " " + food.expDate);
+                            System.out.println(" " + index + ". " + food.getBrand() + " " + food.getExpDate());
                             index++;
-            
                         }
                     }
                 }  else {
@@ -112,8 +100,8 @@ public class Cooler {
                     System.out.println(" " + index + ". drawer is empty.");
                     index++;
                 }
-                
             }
+            System.out.println();
         } catch (NullPointerException e){
             System.out.println("anyád");
             e.getStackTrace();

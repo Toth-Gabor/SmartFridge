@@ -1,7 +1,5 @@
 package com.codecool;
 
-import java.util.List;
-
 public class Shelf
 {
     protected int limit;
@@ -18,5 +16,9 @@ public class Shelf
     
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+    
+    public Food[] getFoods() {
+        return foods;
     }
 }

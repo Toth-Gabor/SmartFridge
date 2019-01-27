@@ -4,11 +4,14 @@ public class Meal extends Food {
     
     protected String mealType;
     
-    public Meal(String name, String mealType, String expDate) {
+    public Meal(String brand, String mealType, String expDate) {
         
-        super(name, expDate);
+        super(brand, expDate);
         this.mealType = mealType;
         
     }
-
+    
+    public String getMealType() {
+        return mealType;
+    }
 }

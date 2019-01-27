@@ -10,6 +10,7 @@ public class Refrigerator {
     protected int temp;
     protected Cooler cooler;
     protected Freezer freezer;
+    protected FridgeDoor fridgeDoor;
     
     public Refrigerator(String brand, String color, int temp) {
         this.brand = brand;
@@ -17,6 +18,7 @@ public class Refrigerator {
         this.temp = temp;
         this.cooler = new Cooler();
         this.freezer = new Freezer();
+        this.fridgeDoor = new FridgeDoor();
     }
     
     public Cooler getCooler() {
@@ -26,6 +28,11 @@ public class Refrigerator {
     public Freezer getFreezer() {
         return freezer;
     }
+    public FridgeDoor getFridgeDoor() {
+        return fridgeDoor;
+    }
+    
+
     
     @Override
     public String toString() {
@@ -59,8 +66,8 @@ public class Refrigerator {
     public void printFridgeStatus() {
         System.out.println("The " + color + " " + brand + " 3000 smart fridge status:\n");
         System.out.println("  Temperature: " + getTemp() + "\n");
+        fridgeDoor.printFrigeDoorStatus();
         cooler.printCoolerStatus();
-        System.out.println();
         freezer.printFreezerStatus();
     }
 }

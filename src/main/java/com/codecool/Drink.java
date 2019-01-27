@@ -1,14 +1,16 @@
 package com.codecool;
-/**
- * Drink
- */
-public class Drink extends Food 
-{
-    protected String drinkType;
 
-    public Drink(String name, String drinkType, String expDate)
+public class Drink extends Food {
+    
+    protected String drinkType;
+    
+    public String getDrinkType() {
+        return drinkType;
+    }
+    
+    public Drink(String brand, String drinkType, String expDate)
     {
-        super(name, expDate);
+        super(brand, expDate);
         this.drinkType = drinkType;
     }
 

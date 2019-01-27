@@ -12,9 +12,11 @@ import java.util.Scanner;
     :exit
  */
 public class Menu {
-
+    
+    
     private String[] menuOptions = {"list", "find", "add", "remove", "report" , "load", "save (write into file)", "exit"};
-    private Scanner scan = new Scanner(System.in); 
+    private Scanner scan = new Scanner(System.in);
+    private Refrigerator fridge = new Refrigerator("Samsung", "Silver", 7);
 
     public Menu() {
 
@@ -33,11 +35,10 @@ public class Menu {
 
         int choice = scan.nextInt();
 
-
         switch (choice)
         {
             case 1:
-                System.out.println("option 1");
+                fridge.printFridgeStatus();
                 break;
             case 2: 
                 System.out.println("option 2");
@@ -58,7 +59,7 @@ public class Menu {
                 System.out.println("option 7");
                 break;
             case 8: 
-                System.out.println("option 8");
+                System.exit(0);
                 break;
             default:
                 System.out.println("Choice must be a value between 1 and 8.");
