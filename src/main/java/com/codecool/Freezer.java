@@ -31,6 +31,10 @@ public class Freezer {
         return drawers;
     }
     
+    public Drawer getDraweByIndex(int index){
+        return this.drawers.get(index);
+    }
+    
     public void printFreezerStatus(){
         
         System.out.println("Freezer: \n");
@@ -46,7 +50,7 @@ public class Freezer {
                     if (food instanceof Food) {
                     
                         isDrawerEmpty = false;
-                        System.out.println(" " + index + ". " + food.getBrand() + " " + food.expDate);
+                        System.out.println(" " + index + ". " + food.getName() + " " + food.expDate);
                         index++;
                     
                     }

@@ -3,18 +3,22 @@ package com.codecool;
 abstract class Food {
     
     protected String brand;
+    protected String name;
+    protected String expDate;
     
-    public Food(String brand, String expDate) {
+    public Food(String brand, String name, String expDate) {
+        
         this.brand = brand;
+        this.name = name;
         this.expDate = expDate;
     }
     
-    public String getBrand() {
-        return brand;
+    public String getName() {
+        return name;
     }
     
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setName(String name) {
+        this.name = name;
     }
     
     public String getExpDate() {
@@ -24,9 +28,8 @@ abstract class Food {
     public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
-    
-    protected String expDate;
-    
-
+    public String getBrand() {
+        return this.brand;
+    }
 
 }

@@ -23,50 +23,61 @@ public class Menu {
     }
     public void showMenu(){
 
-        int counter = 1;
-        System.out.println("\nSmart fridge menu:");
-        System.out.println("------------------");
-
-        for (String option : menuOptions) {
-            System.out.println(" " + counter + ". " + option);
-            counter++;
-        }
-        System.out.println("-------------------");
-
-        int choice = scan.nextInt();
-
-        switch (choice)
-        {
-            case 1:
-                fridge.printFridgeStatus();
-                break;
-            case 2: 
-                System.out.println("option 2");
-                break;
-            case 3: 
-                System.out.println("option 3");
-                break;
-            case 4:
-                System.out.println("option 4");
-                break;
-            case 5: 
-                System.out.println("option 5");
-                break;
-            case 6: 
-                System.out.println("option 6");
-                break;
-            case 7: 
-                System.out.println("option 7");
-                break;
-            case 8: 
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Choice must be a value between 1 and 8.");
-        }   
-
-
-    }
-
+        while (true){
+            int counter = 1;
+            System.out.println("\nSmart fridge menu:");
+            System.out.println("------------------");
     
+            for (String option : menuOptions) {
+                System.out.println(" " + counter + ". " + option);
+                counter++;
+            }
+            System.out.println("-------------------");
+    
+            int choice = scan.nextInt();
+    
+            switch (choice) {
+                case 1:
+                    fridge.printFridgeStatus();
+                    break;
+                case 2:
+                    System.out.println("option 2");
+                    break;
+                case 3:
+                    String[] questions = {"Food type:", "Brand:", "Name:", "ExpDate:", "Fridge place type:", "Index:"};
+                    String[] answers = new String[6];
+                    Scanner sc = new Scanner(System.in);
+                    for (int i = 0; i < questions.length; i++) {
+                        System.out.println(questions[i]);
+                        answers[i] = sc.nextLine();
+                    }
+                    fridge.addFood(answers[4], (Integer.parseInt(answers[5]) - 1),
+                        fridge.createFood(answers[0],answers[1],answers[2],answers[3]));
+                    break;
+                case 4:
+                    System.out.println("option 4");
+                    break;
+                case 5:
+                    System.out.println("option 5");
+                    break;
+                case 6:
+                    System.out.println("option 6");
+                    break;
+                case 7:
+                    System.out.println("option 7");
+                    break;
+                case 8:
+                    System.out.println("See you next time.");
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Choice must be a value between 1 and 8.");
+            }
+        }
+    }
 }

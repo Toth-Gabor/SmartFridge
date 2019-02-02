@@ -45,15 +45,22 @@ public class Cooler {
     
     
     public List<Drawer> getDrawers() {
-        return drawers;
+        return this.drawers;
     }
     
     public List<Shelf> getShelfs() {
-        return shelfs;
+        return this.shelfs;
+    }
+    
+    public Shelf getShelfByIndex(int index){
+        return this.shelfs.get(index);
+    }
+    
+    public Drawer getDraweByIndex(int index){
+        return this.drawers.get(index);
     }
     
     public void printCoolerStatus(){
-        boolean isShelfEmpty = true;
         
         System.out.println("Cooler: \n");
         try {
@@ -62,17 +69,18 @@ public class Cooler {
             
             for (Shelf shelf : shelfs) {
                 
-                if(!isShelfEmpty){
+                if(shelf.foods.size() > 0){
+    
+                    System.out.println(" " + count + ". shelf is contains:");
+                    shelf.printShelfContent();
+                    count++;
                     
-                    for (Food food: shelf.foods) {
+                    /*for (Food food: shelf.foods) {
                         
-                        if (food instanceof Food) {
-                            
-                            isShelfEmpty = false;
-                            System.out.println(" " + count + ". " + food.getBrand() + " " + food.getExpDate());
-                            count++;
-                        }
-                    }
+                        System.out.println(" " + count + ". " + food.getName() + " " + food.getExpDate());
+                        count++;
+
+                    }*/
                 } else {
                     System.out.println(" " + count + ". shelf is empty.");
                     count++;
@@ -80,21 +88,20 @@ public class Cooler {
             }
             System.out.println();
     
-            boolean isDrawerEmpty = true;
             int index = 1;
             for (Drawer drawer : drawers) {
                 
-                if (!isDrawerEmpty){
+                if (drawer.foods.size() > 0){
                     
-                    for (Food food : drawer.foods) {
-        
-                        if (food instanceof Food) {
-                            
-                            isDrawerEmpty = false;
-                            System.out.println(" " + index + ". " + food.getBrand() + " " + food.getExpDate());
-                            index++;
-                        }
-                    }
+                    System.out.println(" " + index + ". drawer contains:");
+                    drawer.printDrawerContent();
+                    index++;
+                    
+                    /*for (Food food : drawer.foods) {
+    
+                        System.out.println(" " + index + ". " + food.getBrand() + " " + food.getExpDate());
+                        index++;
+                    }*/
                 }  else {
     
                     System.out.println(" " + index + ". drawer is empty.");

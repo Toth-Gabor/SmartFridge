@@ -7,38 +7,52 @@ public class Drawer {
 
     protected int limit;
     protected List<Food> foods;
+    protected boolean isFull;
     
     public Drawer() {
         this.limit = 5;
         this.foods = new ArrayList<>();
+        this.isFull = false;
+    }
+    
+    public boolean isFull() { // használjam?
+        if (foods.size() == limit){
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public int getLimit() {
-        return limit;
+        return this.limit;
     }
     
     public void setLimit(int limit) {
         this.limit = limit;
     }
     
-    
     public List<Food> getFoods() {
-        return foods;
+        return this.foods;
     }
     
+    /**
+     * kiakad a castolásnál! JAVÍTANI!
+     * ha több food tipust hozunk létre itt is bővíteni kell
+     */
     public void printDrawerContent(){
         for (Food food : foods) {
             if (food instanceof Drink){
-                System.out.println("  Brand: " + food.getBrand() + " type: " + ((Drink) food).getDrinkType()
+                System.out.println("  Brand: " + food.getBrand() + " name: " + food.getName()
                     + " expdate: " + food.getExpDate());
     
             } else if (food instanceof Meal){
-                System.out.println("  Brand: " + food.getBrand() + " type: " + ((Meal) food).getMealType()
+                System.out.println("  Brand: " + food.getBrand() + " name: " + food.getName()
                     + " expdate: " + food.getExpDate());
             }
-    
         }
     }
+    
+    
     
     public void addFood(String brand, String foodType, String name, String expDate){
         

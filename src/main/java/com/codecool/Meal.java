@@ -2,16 +2,10 @@ package com.codecool;
 
 public class Meal extends Food {
     
-    protected String mealType;
-    
-    public Meal(String brand, String mealType, String expDate) {
+    public Meal(String brand, String name, String expDate) {
         
-        super(brand, expDate);
-        this.mealType = mealType;
-        
+        super(brand, name, expDate);
     }
     
-    public String getMealType() {
-        return mealType;
-    }
+
 }

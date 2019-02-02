@@ -28,27 +28,28 @@ public class FridgeDoor {
         }
     }
     
+    public List<Shelf> getShelfs() {
+        return this.shelfs;
+    }
+    
+    public Shelf getShelfByIndex(int index){
+        return this.shelfs.get(index);
+    }
+    
     public void printFrigeDoorStatus(){
         
         System.out.println("Fridge door: \n");
         try {
-            boolean isDrawerEmpty = true;
             int count = 1;
     
             for (Shelf shelf : shelfs) {
         
-                if(!isDrawerEmpty){
+                if(shelf.foods.size() > 0){
             
-                    for (Food food: shelf.foods) {
-                
-                        if (food instanceof Food) {
+                    System.out.println(" " + count + ". shelf is contains:");
+                    shelf.printShelfContent();
+                    count++;
                     
-                            isDrawerEmpty = false;
-                            System.out.println(" " + count + ". " + food.getBrand() + " " + food.getExpDate());
-                            count++;
-                    
-                        }
-                    }
                 } else {
                     System.out.println(" " + count + ". shelf is empty.");
                     count++;
