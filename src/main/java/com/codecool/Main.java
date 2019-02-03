@@ -23,8 +23,8 @@ public class Main {
         
         
         
-        /*Menu menu = new Menu();
-        menu.showMenu();*/
+        Menu menu = new Menu();
+        menu.showMenu();
     
         //Refrigerator fridge = new Refrigerator("Samsung", "Silver", 7);
         //fridge.getCooler().getDrawers().get(1).foods.add(drink);

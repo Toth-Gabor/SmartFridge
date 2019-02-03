@@ -34,7 +34,7 @@ public class Menu {
             }
             System.out.println("-------------------");
     
-            int choice = scan.nextInt();
+            int choice = scan.nextInt();  // még kiakasztja a betű!!!
     
             switch (choice) {
                 case 1:
@@ -57,8 +57,8 @@ public class Menu {
                     break;
                 case 4:
                     System.out.println("Type the food name what you want to remove:");
-                    Scanner sc = new Scanner(System.in);
-                    fridge.removeFood(sc.nextLine());
+                    Scanner sc1 = new Scanner(System.in);
+                    fridge.removeFood(sc1.nextLine());
                     break;
                 case 5:
                     System.out.println("option 5");

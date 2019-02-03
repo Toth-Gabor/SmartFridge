@@ -68,6 +68,7 @@ public class Refrigerator {
     
     public void addFood(String typePlace, int index, Food food) {
         
+        typePlace = typePlace.toUpperCase();
         List<String> choices = Arrays.asList("shelf", "drawer");
         if (typePlace.equals("COOLER")) {
             
@@ -111,33 +112,38 @@ public class Refrigerator {
         }
     }
     
-    public void removeFood(String name){
+    public void removeFood(String name){ //Még ki kellene találni mi a baj a drawer és a shelf Class-ok methodusaival!
     
         for (Shelf shelf : fridgeDoor.getShelfs()) {
-            for (Food food : shelf.getFoods()) {
-                if (food.getName().equals(name)){
-                    shelf.getFoods().remove(name);
+            //shelf.removeFoodByName(name);
+            
+            for (int i = 0; i < shelf.getFoods().size(); i++) {   // Beta verzió :)
+                if (shelf.getFoods().get(i).getName().equals(name)) {
+                    shelf.getFoods().remove(i);
                 }
             }
         }
         for (Shelf shelf : cooler.getShelfs()) {
-            for (Food food : shelf.getFoods()) {
-                if (food.getName().equals(name)){
-                    shelf.getFoods().remove(name);
+            //shelf.removeFoodByName(name);
+            for (int i = 0; i < shelf.getFoods().size(); i++) {   // Beta verzió :)
+                if (shelf.getFoods().get(i).getName().equals(name)) {
+                    shelf.getFoods().remove(i);
                 }
             }
         }
         for (Drawer drawer : cooler.getDrawers()) {
-            for (Food food : drawer.getFoods()) {
-                if (food.getName().equals(name)){
-                    drawer.getFoods().remove(name);
+            //drawer.removeFoodByName(name);
+            for (int i = 0; i < drawer.getFoods().size(); i++) {   // Beta verzió :)
+                if (drawer.getFoods().get(i).getName().equals(name)) {
+                    drawer.getFoods().remove(i);
                 }
             }
         }
         for (Drawer drawer : freezer.getDrawers()) {
-            for (Food food : drawer.getFoods()) {
-                if (food.getName().equals(name)){
-                    drawer.getFoods().remove(name);
+            //drawer.removeFoodByName(name);
+            for (int i = 0; i < drawer.getFoods().size(); i++) {   // Beta verzió :)
+                if (drawer.getFoods().get(i).getName().equals(name)) {
+                    drawer.getFoods().remove(i);
                 }
             }
         }

@@ -51,5 +51,14 @@ public class Shelf
         }
     }
     
+    public void removeFoodByName(String name){ // NEM MŰKÖDIK!!!
+        
+        for (int i = 0; i < this.foods.size(); i++) {
+            if (this.foods.get(i).equals(name)){
+                this.foods.remove(i);
+            }
+        }
+    }
+    
 
 }
