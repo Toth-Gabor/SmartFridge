@@ -111,6 +111,38 @@ public class Refrigerator {
         }
     }
     
+    public void removeFood(String name){
+    
+        for (Shelf shelf : fridgeDoor.getShelfs()) {
+            for (Food food : shelf.getFoods()) {
+                if (food.getName().equals(name)){
+                    shelf.getFoods().remove(name);
+                }
+            }
+        }
+        for (Shelf shelf : cooler.getShelfs()) {
+            for (Food food : shelf.getFoods()) {
+                if (food.getName().equals(name)){
+                    shelf.getFoods().remove(name);
+                }
+            }
+        }
+        for (Drawer drawer : cooler.getDrawers()) {
+            for (Food food : drawer.getFoods()) {
+                if (food.getName().equals(name)){
+                    drawer.getFoods().remove(name);
+                }
+            }
+        }
+        for (Drawer drawer : freezer.getDrawers()) {
+            for (Food food : drawer.getFoods()) {
+                if (food.getName().equals(name)){
+                    drawer.getFoods().remove(name);
+                }
+            }
+        }
+    }
+    
     public Cooler getCooler() {
         return cooler;
     }

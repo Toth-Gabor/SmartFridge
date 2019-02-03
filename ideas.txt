@@ -1,0 +1,4 @@
+- Hanggal köszönne be és el
+- Hang vezérelt menü
+- javafx-et hogyan kell hozzáadni
+- iterátor használata pl: listFood a Refrigerator Class-ban

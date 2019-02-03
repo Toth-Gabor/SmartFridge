@@ -56,7 +56,9 @@ public class Menu {
                         fridge.createFood(answers[0],answers[1],answers[2],answers[3]));
                     break;
                 case 4:
-                    System.out.println("option 4");
+                    System.out.println("Type the food name what you want to remove:");
+                    Scanner sc = new Scanner(System.in);
+                    fridge.removeFood(sc.nextLine());
                     break;
                 case 5:
                     System.out.println("option 5");
