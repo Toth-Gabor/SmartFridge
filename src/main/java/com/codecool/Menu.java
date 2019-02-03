@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Menu {
     
     
-    private String[] menuOptions = {"list", "find", "add", "remove", "report" , "load", "save (write into file)", "exit"};
+    private String[] menuOptions = {"Show fridge status", "list all food", "add", "remove", "report" , "load", "save (write into file)", "exit"};
     private Scanner scan = new Scanner(System.in);
     private Refrigerator fridge = new Refrigerator("Samsung", "Silver", 7);
 
@@ -41,10 +41,11 @@ public class Menu {
                     fridge.printFridgeStatus();
                     break;
                 case 2:
-                    System.out.println("option 2");
+                    fridge.listFoods();
                     break;
                 case 3:
-                    String[] questions = {"Food type:", "Brand:", "Name:", "ExpDate:", "Fridge place type:", "Index:"};
+                    String[] questions = {"Food type: [drink or meal]", "Brand:", "Name:", "ExpDate:",
+                                        "Fridge place type:[FRIDGEDOOR,COOLER,FREEZER]","Index:"};
                     String[] answers = new String[6];
                     Scanner sc = new Scanner(System.in);
                     for (int i = 0; i < questions.length; i++) {

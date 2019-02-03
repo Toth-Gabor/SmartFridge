@@ -38,29 +38,26 @@ public class Freezer {
     public void printFreezerStatus(){
         
         System.out.println("Freezer: \n");
-        boolean isDrawerEmpty = true;
+    
         int index = 1;
-        
         for (Drawer drawer : drawers) {
         
-            if (!isDrawerEmpty){
+            if (drawer.foods.size() > 0){
             
-                for (Food food : drawer.foods) {
-                
-                    if (food instanceof Food) {
+                System.out.println(" " + index + ". drawer contains:");
+                drawer.printDrawerContent();
+                index++;
                     
-                        isDrawerEmpty = false;
-                        System.out.println(" " + index + ". " + food.getName() + " " + food.expDate);
+                    /*for (Food food : drawer.foods) {
+    
+                        System.out.println(" " + index + ". " + food.getBrand() + " " + food.getExpDate());
                         index++;
-                    
-                    }
-                }
+                    }*/
             }  else {
             
                 System.out.println(" " + index + ". drawer is empty.");
                 index++;
             }
-        
         }
         System.out.println();
     }

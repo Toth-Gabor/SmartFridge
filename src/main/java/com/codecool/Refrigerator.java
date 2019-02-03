@@ -31,7 +31,7 @@ public class Refrigerator {
         COOLER,FREEZER,FRIDGEDOOR
         
     }
-    public boolean isFoodTypeValid(String foodType){
+    public boolean isFoodTypeValid(String foodType){ //ha bővül a foodType itt is bővíteni!!!
         
         List<String> foodtypes = Arrays.asList("drink", "meal");
         
@@ -93,7 +93,7 @@ public class Refrigerator {
             }
             
             
-        } else if (typePlace.equals("FREZEER")){
+        } else if (typePlace.equals("FREEZER")){
             try {
                 freezer.getDraweByIndex(index).foods.add(food);
             } catch (IndexOutOfBoundsException e){
@@ -147,6 +147,24 @@ public class Refrigerator {
         fridgeDoor.printFrigeDoorStatus();
         cooler.printCoolerStatus();
         freezer.printFreezerStatus();
+    }
+    
+    public void listFoods(){
+        
+        System.out.println("All foods: \n");
+        
+        for (Shelf shelf : fridgeDoor.getShelfs()) {
+            shelf.printShelfContent();
+        }
+        for (Shelf shelf : cooler.getShelfs()) {
+            shelf.printShelfContent();
+        }
+        for (Drawer drawer : cooler.getDrawers()) {
+            drawer.printDrawerContent();
+        }
+        for (Drawer drawer : freezer.getDrawers()) {
+            drawer.printDrawerContent();
+        }
     }
     
 

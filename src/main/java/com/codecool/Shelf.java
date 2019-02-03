@@ -35,7 +35,6 @@ public class Shelf
     }
     
     /**
-     * kiakad a castolásnál! JAVÍTANI!
      * ha több food tipust hozunk létre itt is bővíteni kell!
      */
     public void printShelfContent(){

@@ -1,6 +1,10 @@
 package com.codecool;
 
-import static com.codecool.Refrigerator.FridgePlaceType.COOLER;
+
+import javax.sound.sampled.AudioInputStream;
+import java.io.FileNotFoundException;
+
+
 
 public class Main {
     
@@ -10,11 +14,17 @@ public class Main {
         
         //Cooler cooler = new Cooler();
         //cooler.getDrawers().get(0).foods.add(drink);
+        
+        String load = "sounds/load fridge.mp3";
 
         
+    
         
-        Menu menu = new Menu();
-        menu.showMenu();
+        
+        
+        
+        /*Menu menu = new Menu();
+        menu.showMenu();*/
     
         //Refrigerator fridge = new Refrigerator("Samsung", "Silver", 7);
         //fridge.getCooler().getDrawers().get(1).foods.add(drink);
