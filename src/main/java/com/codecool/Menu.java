@@ -15,10 +15,12 @@ import java.util.Scanner;
 public class Menu {
     
     
-    private String[] menuOptions = {"Show fridge status", "list all food", "add", "remove", "report", "load", "save (write into file)", "exit"};
+    private String[] menuOptions = {"Show fridge status", "list all food", "add", "remove food by id", "report", "load", "save (write into file)", "exit"};
     private Scanner scan = new Scanner(System.in);
     private Refrigerator fridge = new Refrigerator("Samsung", "Silver", 7);
     private int choice;
+    private String[] questions = {"Food type: ", "Name:", "ExpDate:", "Fridge place type:[FRIDGEDOOR,COOLER,FREEZER]"};
+    private String[] answers = new String[4];
     
     public Menu() {
     
@@ -52,19 +54,35 @@ public class Menu {
                         System.out.println("The fridge is empty.");
                     } else {
                         System.out.println("Foods:");
-                        System.out.println(fridge.listFoods()); //TESZTELNI!
+                        for (Food food : fridge.listFoods()) {
+                            System.out.println(food);
+                        }
                     }
                     break;
                 case 3:
-                    /*String[] questions = {"Food type: ", "Name:", "ExpDate:",
-                        "Fridge place type:[FRIDGEDOOR,COOLER,FREEZER]", "Index:"};
-                    String[] answers = new String[6];
-                    for (int i = 0; i < questions.length; i++) {
+                    for (int i = 0; i < questions.length; i++) { //valamiért az első két elemet egyszerre írja ki!
                         System.out.println(questions[i]);
-                        answers[i] = scan.nextLine();
+                        answers[i] = scan.next();
                     }
-                    Food food = fridge.createFood(answers[0], answers[1], answers[2], answers[3]);
-                    fridge.addFood((Refrigerator.FridgePlaceType)answers[4], (Integer.parseInt(answers[5]) - 1), food);*/
+
+                    String coolerPlaceType = "";
+                    String index = "";
+                    if(Refrigerator.FridgePlaceType.valueOf(answers[3].toUpperCase()) == Refrigerator.FridgePlaceType.COOLER){
+                        
+                        System.out.println("Cooler place Type:[SHELF,DRAWER]");
+                        coolerPlaceType = scan.next();
+                        System.out.println("index:");
+                        index = scan.next();
+                    } else {
+                        coolerPlaceType = "SHELF";
+                        System.out.println("index:");
+                        index = scan.next();
+                    }
+                    
+                    Food food = new Food(answers[0], answers[1], answers[2]);
+                    fridge.addFood(Refrigerator.FridgePlaceType.valueOf(answers[3].toUpperCase()),
+                                    Refrigerator.CoolerPlaceType.valueOf(coolerPlaceType.toUpperCase()),
+                                    (Integer.parseInt(index) - 1), food);
                     break;
                 case 4:
                     System.out.println("Type the food id what you want to remove:");

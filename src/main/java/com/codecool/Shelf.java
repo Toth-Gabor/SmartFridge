@@ -7,8 +7,8 @@ public class Shelf
 {
     protected int limit;
     protected List<Food> foods;
-    protected boolean isFull;
     private int buffer;
+    
     
     public Shelf() {
         this.limit = 5;
@@ -41,16 +41,6 @@ public class Shelf
     
     public List<Food> getFoods() {
         return this.foods;
-    }
-    
-    /**
-     * TÖRÖLNI KELL!!
-     */
-    public void printShelfContent(){
-        for (Food food : foods) {
-            System.out.println("Id: " + food.getId() + "Type: " + food.getType() + " name: " + food.getName()
-                + " expdate: " + food.getExpDate());
-        }
     }
     
     public void removeFoodById(int id){

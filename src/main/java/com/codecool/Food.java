@@ -28,6 +28,7 @@ public class Food {
     
     
     public int getId() {
+        System.out.println(id);
         return this.id;
     }
     
@@ -45,7 +46,7 @@ public class Food {
     
     @Override
     public String toString() {
-        return "  FoodId: " + id +
+        return "  Food Id: " + id +
             ". type: " + type +
             ". name: " + name +
             ". expDate: " + expDate;

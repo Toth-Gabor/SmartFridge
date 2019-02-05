@@ -32,58 +32,46 @@ public class Refrigerator {
         COOLER,FREEZER,FRIDGEDOOR
         
     }
+    public enum CoolerPlaceType{
+        SHELF,DRAWER
+    }
     
-    /*public Food createFood (String foodType, String name, String expDate){
-        
-        if (isFoodTypeValid(foodType)){
-            if (foodType.equals("drink")){
-                return new Drink(brand, name, expDate);
-            } else if (foodType.equals("meal")){
-                return new Meal(brand, name, expDate);
-            }
-        } else {
-            System.out.println("This food type is not exist!");
-            
-        }
-        return null;
-    }*/
-    
-    
-    public void addFood(FridgePlaceType typePlace, int index, Food food) {
+    public void addFood(FridgePlaceType typePlace,CoolerPlaceType coolerPlaceType, int index, Food food) {
         
         List<String> choices = Arrays.asList("shelf", "drawer");
         if (typePlace == FridgePlaceType.COOLER) {
-            
-            String choice = "";
-            
-            while (!choices.contains(choice)) {
-                System.out.println("Type your choice: [shelf or drawer]");
-                Scanner sc = new Scanner(System.in);
-                choice = sc.nextLine().toLowerCase();
-            }
-            if (choice.equals("shelf")){
+
+            if (coolerPlaceType == CoolerPlaceType.SHELF){
                 try {
-                    cooler.getShelfByIndex(index).foods.add(food);
+                    if (!cooler.getShelfByIndex(index).isFull()){
+                        cooler.getShelfByIndex(index).foods.add(food);
+                    }
                 } catch (IndexOutOfBoundsException e) {
                     e.printStackTrace();
                 }
-            } else {
+            } else if (coolerPlaceType == CoolerPlaceType.DRAWER){
                 try {
-                    cooler.getDrawerByIndex(index).foods.add(food);
+                    if (!cooler.getDrawerByIndex(index).isFull()){
+                        cooler.getDrawerByIndex(index).foods.add(food);
+                    }
                 } catch (IndexOutOfBoundsException e) {
                     e.printStackTrace();
                 }
             }
         } else if (typePlace == FridgePlaceType.FREEZER){
             try {
-                freezer.getDraweByIndex(index).foods.add(food);
+                if (!freezer.getDrawerByIndex(index).isFull()){
+                    freezer.getDrawerByIndex(index).foods.add(food);
+                }
             } catch (IndexOutOfBoundsException e){
                 e.printStackTrace();
             }
         } else if (typePlace == FridgePlaceType.FRIDGEDOOR){
     
             try {
-                fridgeDoor.getShelfByIndex(index).foods.add(food);
+                if (!cooler.getShelfByIndex(index).isFull()){
+                    cooler.getShelfByIndex(index).foods.add(food);
+                }
             } catch (IndexOutOfBoundsException e){
                 e.printStackTrace();
             }

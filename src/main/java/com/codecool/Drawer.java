@@ -7,13 +7,11 @@ public class Drawer {
     
     private int limit;
     protected List<Food> foods;
-    private boolean isFull;
     private int buffer;
     
     public Drawer() {
         this.limit = 5;
         this.foods = new ArrayList<>();
-        this.isFull = false;
     }
     
     public boolean isFull() {

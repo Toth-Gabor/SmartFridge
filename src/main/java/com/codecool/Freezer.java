@@ -31,7 +31,7 @@ public class Freezer {
         return drawers;
     }
     
-    public Drawer getDraweByIndex(int index){
+    public Drawer getDrawerByIndex(int index){
         return this.drawers.get(index);
     }
     

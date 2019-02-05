@@ -5,6 +5,7 @@
 - csak mainben legyen input és print
 - a food expDate Date legyen
 - menű user input kezelése!
+- a remove még nem jó
        /* while (true) {
             int choice = ...
             1: fridge.printFridgeStatus();
