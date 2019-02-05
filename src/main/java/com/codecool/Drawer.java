@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Drawer {
-
-    protected int limit;
+    
+    private int limit;
     protected List<Food> foods;
-    protected boolean isFull;
+    private boolean isFull;
+    private int buffer;
     
     public Drawer() {
         this.limit = 5;
@@ -15,8 +16,16 @@ public class Drawer {
         this.isFull = false;
     }
     
-    public boolean isFull() { // használjam?
+    public boolean isFull() {
         if (foods.size() == limit){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean isEmpty(){
+        if (foods.size() == 0){
             return true;
         } else {
             return false;
@@ -35,25 +44,14 @@ public class Drawer {
         return this.foods;
     }
     
-    /**
-     * ha több food tipust hozunk létre itt is bővíteni kell
-     */
-    public void printDrawerContent(){
+    public void printDrawerContent(){ // törölni?
         for (Food food : foods) {
-            if (food instanceof Drink){
-                System.out.println("  Brand: " + food.getBrand() + " name: " + food.getName()
-                    + " expdate: " + food.getExpDate());
-    
-            } else if (food instanceof Meal){
-                System.out.println("  Brand: " + food.getBrand() + " name: " + food.getName()
-                    + " expdate: " + food.getExpDate());
-            }
+            System.out.println("Id: " + food.getId() + "Type: " + food.getType() + " name: " + food.getName()
+                + " expdate: " + food.getExpDate());
         }
     }
     
-    
-    
-    public void addFood(String brand, String foodType, String name, String expDate){
+    /*public void addFood(String type, String name, String expDate){
         
         if (foods.size() < limit) {
             
@@ -74,14 +72,28 @@ public class Drawer {
             System.out.println("This drawer is full! ");
         
         }
-    }
+    }*/
     
-    public void removeFoodByName(String name){ // NEM MŰKÖDIK!!!
+    public void removeFoodById(int id){
         
         for (int i = 0; i < this.foods.size(); i++) {
-            if (this.foods.get(i).equals(name)){
-                this.foods.remove(i);
+            if (this.foods.get(i).getId() == id){
+                buffer = i;
             }
+        }
+        this.foods.remove(buffer);
+    }
+    
+    @Override
+    public String toString() {
+        if (isEmpty()){
+            return "The drawer is empty!";
+        } else {
+            String result = "drawer: \n";
+            for (Food food : foods) {
+                result += food + "\n";
+            }
+            return result;
         }
     }
 }

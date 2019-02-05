@@ -2,3 +2,14 @@
 - Hang vezérelt menü
 - javafx-et hogyan kell hozzáadni
 - iterátor használata pl: listFood a Refrigerator Class-ban
+- csak mainben legyen input és print
+- a food expDate Date legyen
+- menű user input kezelése!
+       /* while (true) {
+            int choice = ...
+            1: fridge.printFridgeStatus();
+            2: list foods
+            3: add food:
+                int foodId = ...
+                FridgePlaceType hova = COOLER | X | Y enum!!!!!!
+                    if COOLER -> fridge.addFood(hova, new Food())*/

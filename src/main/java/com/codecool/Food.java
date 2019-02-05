@@ -1,35 +1,53 @@
 package com.codecool;
 
-abstract class Food {
+public class Food {
     
-    protected String brand;
-    protected String name;
-    protected String expDate;
+    private static int num = 1;
+    private int id = 0;
+    private String type;
+    private String name;
+    private String expDate;
     
-    public Food(String brand, String name, String expDate) {
+    public Food(String type, String name, String expDate) {
         
-        this.brand = brand;
+        this.id = num;
+        this.type = type;
         this.name = name;
         this.expDate = expDate;
+        num++;
+        
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getName() {
-        return name;
+        return this.name;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    
+    public int getId() {
+        return this.id;
+    }
+    
+    public String getType() {
+        return this.type;
     }
     
     public String getExpDate() {
-        return expDate;
+        return this.expDate;
     }
     
     public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
-    public String getBrand() {
-        return this.brand;
+    
+    @Override
+    public String toString() {
+        return "  FoodId: " + id +
+            ". type: " + type +
+            ". name: " + name +
+            ". expDate: " + expDate;
     }
-
 }

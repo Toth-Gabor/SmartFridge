@@ -8,14 +8,23 @@ public class Shelf
     protected int limit;
     protected List<Food> foods;
     protected boolean isFull;
+    private int buffer;
     
     public Shelf() {
         this.limit = 5;
         this.foods = new ArrayList<>();
     }
     
-    public boolean isFull() {  // használjam?
+    public boolean isFull() {
         if (foods.size() == limit){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public boolean isEmpty(){
+        if (foods.size() == 0){
             return true;
         } else {
             return false;
@@ -35,30 +44,35 @@ public class Shelf
     }
     
     /**
-     * ha több food tipust hozunk létre itt is bővíteni kell!
+     * TÖRÖLNI KELL!!
      */
     public void printShelfContent(){
         for (Food food : foods) {
-            if (food instanceof Drink){
-                System.out.println("  Brand: " + ((Drink) food).getBrand() + " name: " + food.getName()
-                    + " expdate: " + food.getExpDate());
-                
-            } else if (food instanceof Meal){
-                System.out.println("  Brand: " + ((Meal) food).getBrand() + " name: " + food.getName()
-                    + " expdate: " + food.getExpDate());
-            }
-            
+            System.out.println("Id: " + food.getId() + "Type: " + food.getType() + " name: " + food.getName()
+                + " expdate: " + food.getExpDate());
         }
     }
     
-    public void removeFoodByName(String name){ // NEM MŰKÖDIK!!!
+    public void removeFoodById(int id){
         
         for (int i = 0; i < this.foods.size(); i++) {
-            if (this.foods.get(i).equals(name)){
-                this.foods.remove(i);
+            if (this.foods.get(i).getId() == id){
+                buffer = i;
             }
         }
+        this.foods.remove(buffer);
     }
     
-
+    @Override
+    public String toString() {
+        if (isEmpty()){
+            return "The shelf is empty!";
+        } else {
+            String result = "shelf: \n";
+            for (Food food : foods) {
+                result += food + "\n";
+            }
+            return result;
+        }
+    }
 }

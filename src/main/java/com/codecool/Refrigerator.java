@@ -1,5 +1,6 @@
 package com.codecool;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -9,13 +10,13 @@ import java.util.Scanner;
  */
 public class Refrigerator {
     
-    protected String brand;
-    protected String color;
-    protected int temp;
-    protected Cooler cooler;
-    protected Freezer freezer;
-    protected FridgeDoor fridgeDoor;
-    protected FridgePlaceType fridgePlaceType;
+    private String brand;
+    private String color;
+    private int temp;
+    private Cooler cooler;
+    private Freezer freezer;
+    private FridgeDoor fridgeDoor;
+    private FridgePlaceType fridgePlaceType;
     
     
     public Refrigerator(String brand, String color, int temp) {
@@ -27,23 +28,12 @@ public class Refrigerator {
         this.fridgeDoor = new FridgeDoor();
     }
     
-    public enum FridgePlaceType{ // még nem sikerült jól használni! MENTOR MUST ASK!
+    public enum FridgePlaceType{
         COOLER,FREEZER,FRIDGEDOOR
         
     }
-    public boolean isFoodTypeValid(String foodType){ //ha bővül a foodType itt is bővíteni!!!
-        
-        List<String> foodtypes = Arrays.asList("drink", "meal");
-        
-        if (foodtypes.contains(foodType)){
-            return true;
-        } else {
-            return false;
-        }
-        
-    }
     
-    public Food createFood (String foodType, String brand, String name, String expDate){
+    /*public Food createFood (String foodType, String name, String expDate){
         
         if (isFoodTypeValid(foodType)){
             if (foodType.equals("drink")){
@@ -56,28 +46,20 @@ public class Refrigerator {
             
         }
         return null;
-    }
+    }*/
     
-    /**
-    try - catch így jó?
-    ötletek:
-        esetleg switch-et használni az if-ek helyett?
-     cél:
-        enumot használni string helyett
-     */
     
-    public void addFood(String typePlace, int index, Food food) {
+    public void addFood(FridgePlaceType typePlace, int index, Food food) {
         
-        typePlace = typePlace.toUpperCase();
         List<String> choices = Arrays.asList("shelf", "drawer");
-        if (typePlace.equals("COOLER")) {
+        if (typePlace == FridgePlaceType.COOLER) {
             
             String choice = "";
             
             while (!choices.contains(choice)) {
                 System.out.println("Type your choice: [shelf or drawer]");
                 Scanner sc = new Scanner(System.in);
-                choice = sc.nextLine().toLowerCase(); // ha elírná a user
+                choice = sc.nextLine().toLowerCase();
             }
             if (choice.equals("shelf")){
                 try {
@@ -87,91 +69,86 @@ public class Refrigerator {
                 }
             } else {
                 try {
-                    cooler.getDraweByIndex(index).foods.add(food);
+                    cooler.getDrawerByIndex(index).foods.add(food);
                 } catch (IndexOutOfBoundsException e) {
                     e.printStackTrace();
                 }
             }
-            
-            
-        } else if (typePlace.equals("FREEZER")){
+        } else if (typePlace == FridgePlaceType.FREEZER){
             try {
                 freezer.getDraweByIndex(index).foods.add(food);
             } catch (IndexOutOfBoundsException e){
                 e.printStackTrace();
             }
-            
-            
-        } else if (typePlace.equals("FRIDGEDOOR")){
+        } else if (typePlace == FridgePlaceType.FRIDGEDOOR){
+    
             try {
                 fridgeDoor.getShelfByIndex(index).foods.add(food);
             } catch (IndexOutOfBoundsException e){
                 e.printStackTrace();
             }
-            
         }
     }
     
-    public void removeFood(String name){ //Még ki kellene találni mi a baj a drawer és a shelf Class-ok methodusaival!
+    public void removeFood(int id){ //Tesztelni!
     
         for (Shelf shelf : fridgeDoor.getShelfs()) {
-            //shelf.removeFoodByName(name);
+            shelf.removeFoodById(id);
             
-            for (int i = 0; i < shelf.getFoods().size(); i++) {   // Beta verzió :)
+            /*for (int i = 0; i < shelf.getFoods().size(); i++) {   // Beta verzió :)
                 if (shelf.getFoods().get(i).getName().equals(name)) {
                     shelf.getFoods().remove(i);
                 }
-            }
+            }*/
         }
         for (Shelf shelf : cooler.getShelfs()) {
-            //shelf.removeFoodByName(name);
-            for (int i = 0; i < shelf.getFoods().size(); i++) {   // Beta verzió :)
+            shelf.removeFoodById(id);
+            /*for (int i = 0; i < shelf.getFoods().size(); i++) {   // Beta verzió :)
                 if (shelf.getFoods().get(i).getName().equals(name)) {
                     shelf.getFoods().remove(i);
                 }
-            }
+            }*/
         }
         for (Drawer drawer : cooler.getDrawers()) {
+            drawer.removeFoodById(id);
             //drawer.removeFoodByName(name);
-            for (int i = 0; i < drawer.getFoods().size(); i++) {   // Beta verzió :)
+            /*for (int i = 0; i < drawer.getFoods().size(); i++) {   // Beta verzió :)
                 if (drawer.getFoods().get(i).getName().equals(name)) {
                     drawer.getFoods().remove(i);
                 }
-            }
+            }*/
         }
         for (Drawer drawer : freezer.getDrawers()) {
+            drawer.removeFoodById(id);
             //drawer.removeFoodByName(name);
-            for (int i = 0; i < drawer.getFoods().size(); i++) {   // Beta verzió :)
+            /*for (int i = 0; i < drawer.getFoods().size(); i++) {   // Beta verzió :)
                 if (drawer.getFoods().get(i).getName().equals(name)) {
                     drawer.getFoods().remove(i);
                 }
-            }
+            }*/
         }
     }
     
     public Cooler getCooler() {
-        return cooler;
+        return this.cooler;
     }
     
     public Freezer getFreezer() {
-        return freezer;
+        return this.freezer;
     }
     public FridgeDoor getFridgeDoor() {
-        return fridgeDoor;
+        return this.fridgeDoor;
     }
-
     
     public String getBrand() {
         return this.brand;
     }
     
-    public String getColor()
-    {
+    public String getColor() {
         return this.color;
     }
     
-    public int getTemp()
-    {
+    public int getTemp() {
         return this.temp;
     }
     
@@ -179,40 +156,48 @@ public class Refrigerator {
         this.temp = temp;
     }
     
-    public void printFridgeStatus() {
-        System.out.println("The " + color + " " + brand + " 3000 smart fridge status:\n");
-        System.out.println("  Temperature: " + getTemp() + "\n");
-        fridgeDoor.printFrigeDoorStatus();
-        cooler.printCoolerStatus();
-        freezer.printFreezerStatus();
-    }
     
-    public void listFoods(){
+    
+    public List<Food> listFoods(){ //Tesztelni!
         
-        System.out.println("All foods: \n");
+        List<Food> foodList = new ArrayList<>();
         
         for (Shelf shelf : fridgeDoor.getShelfs()) {
-            shelf.printShelfContent();
+            if (!shelf.isEmpty()){
+                for (Food food : shelf.foods) {
+                    foodList.add(food);
+                }
+            }
         }
         for (Shelf shelf : cooler.getShelfs()) {
-            shelf.printShelfContent();
+            if (!shelf.isEmpty()) {
+                for (Food food : shelf.foods) {
+                    foodList.add(food);
+                }
+            }
         }
         for (Drawer drawer : cooler.getDrawers()) {
-            drawer.printDrawerContent();
+            if (!drawer.isEmpty()) {
+                for (Food food : drawer.foods) {
+                    foodList.add(food);
+                }
+            }
         }
         for (Drawer drawer : freezer.getDrawers()) {
-            drawer.printDrawerContent();
+            if (!drawer.isEmpty()) {
+                for (Food food : drawer.foods) {
+                    foodList.add(food);
+                }
+            }
         }
+        return foodList;
     }
-    
-
     
     @Override
     public String toString() {
-        return "Refrigerator{" +
-            "brand='" + brand + '\'' +
-            ", color='" + color + '\'' +
-            ", temp=" + temp +
-            '}';
+        
+        String fridge = "The " + color + " " + brand + " 3000 smart fridge status:\n  " +
+                        "Temperature: " + getTemp() + "\n\n" +fridgeDoor + cooler + freezer;
+        return fridge;
     }
 }

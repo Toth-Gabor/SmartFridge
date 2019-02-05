@@ -12,7 +12,7 @@ public class FridgeDoor {
     public FridgeDoor()
     {
         this.doorPosition = false;
-        this.shelfLimit = 5;
+        this.shelfLimit = 3;
         this.shelfs =  new ArrayList<>();
         
         for (int i = 0; i < shelfLimit; i++) {
@@ -36,7 +36,7 @@ public class FridgeDoor {
         return this.shelfs.get(index);
     }
     
-    public void printFrigeDoorStatus(){
+    /*public void printFrigeDoorStatus(){
         
         System.out.println("Fridge door: \n");
         try {
@@ -59,6 +59,17 @@ public class FridgeDoor {
         }catch (NullPointerException e){
             e.getStackTrace();
         }
+    }*/
+    
+    @Override
+    public String toString() {
+        
+        int count = 1;
+        String fridgeDoor = "Fridgedoor: \n";
+        for (Shelf shelf : shelfs) {
+            fridgeDoor += " " + count + "." + shelf + "\n";
+            count++;
+        }
+        return fridgeDoor + "\n";
     }
-
 }

@@ -10,7 +10,7 @@ public class Freezer {
     
     public Freezer() {
         
-        this.drawerLimit = 3;
+        this.drawerLimit = 4;
         this.drawers = new ArrayList<>();
         try {
             for (int i = 0; i < drawerLimit; i++) {
@@ -60,5 +60,17 @@ public class Freezer {
             }
         }
         System.out.println();
+    }
+    
+    @Override
+    public String toString() {
+        
+        int count = 1;
+        String freezer = "Freezer: \n";
+        for (Drawer drawer : drawers) {
+            freezer += " " + count + ". " + drawer + "\n";
+            count++;
+        }
+        return freezer + "\n";
     }
 }

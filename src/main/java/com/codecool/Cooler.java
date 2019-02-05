@@ -15,7 +15,7 @@ public class Cooler {
     public Cooler() {
     
         this.shelfLimit = 4;
-        this.drawerLimit = 3;
+        this.drawerLimit = 2;
         this.fridgeLamp = false;
         this.shelfs = new ArrayList<>();
         this.drawers = new ArrayList<>();
@@ -56,11 +56,11 @@ public class Cooler {
         return this.shelfs.get(index);
     }
     
-    public Drawer getDraweByIndex(int index){
+    public Drawer getDrawerByIndex(int index){
         return this.drawers.get(index);
     }
     
-    public void printCoolerStatus(){
+    /*public void printCoolerStatus(){
         
         System.out.println("Cooler: \n");
         try {
@@ -75,12 +75,12 @@ public class Cooler {
                     shelf.printShelfContent();
                     count++;
                     
-                    /*for (Food food: shelf.foods) {
+                    *//*for (Food food: shelf.foods) {
                         
                         System.out.println(" " + count + ". " + food.getName() + " " + food.getExpDate());
                         count++;
 
-                    }*/
+                    }*//*
                 } else {
                     System.out.println(" " + count + ". shelf is empty.");
                     count++;
@@ -97,11 +97,11 @@ public class Cooler {
                     drawer.printDrawerContent();
                     index++;
                     
-                    /*for (Food food : drawer.foods) {
+                    *//*for (Food food : drawer.foods) {
     
                         System.out.println(" " + index + ". " + food.getBrand() + " " + food.getExpDate());
                         index++;
-                    }*/
+                    }*//*
                 }  else {
     
                     System.out.println(" " + index + ". drawer is empty.");
@@ -113,6 +113,23 @@ public class Cooler {
             System.out.println("anyád");
             e.getStackTrace();
         }
-    }
+    }*/
     
+    @Override
+    public String toString() {
+        
+        int count = 1;
+        String cooler = "Cooler:\n";
+        for (Shelf shelf : shelfs) {
+            cooler += " " + count + ". " + shelf + "\n";
+            count++;
+        }
+        cooler+= "\n";
+        count = 1;
+        for (Drawer drawer : drawers) {
+            cooler += " " + count + ". " + drawer + "\n";
+            count++;
+        }
+        return cooler+= "\n";
+    }
 }
