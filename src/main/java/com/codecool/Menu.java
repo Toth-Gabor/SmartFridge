@@ -45,7 +45,6 @@ public class Menu {
                     break;
                 }
             }
-            choice = scan.next();
             switch (choice) {
                 case "1":
                     option1();
@@ -157,7 +156,7 @@ public class Menu {
     private void option8(){
         System.out.println("See you nextLine() time.");
         try {
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
