@@ -60,61 +60,6 @@ public class Cooler {
         return this.drawers.get(index);
     }
     
-    /*public void printCoolerStatus(){
-        
-        System.out.println("Cooler: \n");
-        try {
-    
-            int count = 1;
-            
-            for (Shelf shelf : shelfs) {
-                
-                if(shelf.foods.size() > 0){
-    
-                    System.out.println(" " + count + ". shelf is contains:");
-                    shelf.printShelfContent();
-                    count++;
-                    
-                    *//*for (Food food: shelf.foods) {
-                        
-                        System.out.println(" " + count + ". " + food.getName() + " " + food.getExpDate());
-                        count++;
-
-                    }*//*
-                } else {
-                    System.out.println(" " + count + ". shelf is empty.");
-                    count++;
-                }
-            }
-            System.out.println();
-    
-            int index = 1;
-            for (Drawer drawer : drawers) {
-                
-                if (drawer.foods.size() > 0){
-                    
-                    System.out.println(" " + index + ". drawer contains:");
-                    drawer.printDrawerContent();
-                    index++;
-                    
-                    *//*for (Food food : drawer.foods) {
-    
-                        System.out.println(" " + index + ". " + food.getBrand() + " " + food.getExpDate());
-                        index++;
-                    }*//*
-                }  else {
-    
-                    System.out.println(" " + index + ". drawer is empty.");
-                    index++;
-                }
-            }
-            System.out.println();
-        } catch (NullPointerException e){
-            System.out.println("anyád");
-            e.getStackTrace();
-        }
-    }*/
-    
     @Override
     public String toString() {
         

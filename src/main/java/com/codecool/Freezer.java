@@ -10,7 +10,7 @@ public class Freezer {
     
     public Freezer() {
         
-        this.drawerLimit = 4;
+        this.drawerLimit = 3;
         this.drawers = new ArrayList<>();
         try {
             for (int i = 0; i < drawerLimit; i++) {
@@ -33,33 +33,6 @@ public class Freezer {
     
     public Drawer getDrawerByIndex(int index){
         return this.drawers.get(index);
-    }
-    
-    public void printFreezerStatus(){
-        
-        System.out.println("Freezer: \n");
-    
-        int index = 1;
-        for (Drawer drawer : drawers) {
-        
-            if (drawer.foods.size() > 0){
-            
-                System.out.println(" " + index + ". drawer contains:");
-                drawer.printDrawerContent();
-                index++;
-                    
-                    /*for (Food food : drawer.foods) {
-    
-                        System.out.println(" " + index + ". " + food.getBrand() + " " + food.getExpDate());
-                        index++;
-                    }*/
-            }  else {
-            
-                System.out.println(" " + index + ". drawer is empty.");
-                index++;
-            }
-        }
-        System.out.println();
     }
     
     @Override

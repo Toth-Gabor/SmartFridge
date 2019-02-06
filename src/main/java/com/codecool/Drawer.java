@@ -1,13 +1,13 @@
 package com.codecool;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Drawer {
     
     private int limit;
     protected List<Food> foods;
-    private int buffer;
     
     public Drawer() {
         this.limit = 5;
@@ -42,50 +42,20 @@ public class Drawer {
         return this.foods;
     }
     
-    public void printDrawerContent(){ // törölni?
-        for (Food food : foods) {
-            System.out.println("Id: " + food.getId() + "Type: " + food.getType() + " name: " + food.getName()
-                + " expdate: " + food.getExpDate());
-        }
-    }
-    
-    /*public void addFood(String type, String name, String expDate){
-        
-        if (foods.size() < limit) {
-            
-            if (foodType.equals("meal")){
-    
-                foods.add(new Meal(brand, name, expDate));
-    
-            } else if (foodType.equals("drink")){
-    
-                foods.add(new Drink(brand, name, expDate));
-    
-            } else {
-    
-                System.out.println("Non exits food type!");
-            }
-        } else {
-            
-            System.out.println("This drawer is full! ");
-        
-        }
-    }*/
-    
     public void removeFoodById(int id){
         
-        for (int i = 0; i < this.foods.size(); i++) {
-            if (this.foods.get(i).getId() == id){
-                buffer = i;
+        Iterator<Food> foodIterator = getFoods().iterator();
+        while(foodIterator.hasNext()){
+            if (foodIterator.next().getId() == id){
+                foodIterator.remove();
             }
         }
-        this.foods.remove(buffer);
     }
     
     @Override
     public String toString() {
         if (isEmpty()){
-            return "The drawer is empty!";
+            return "This drawer is empty!";
         } else {
             String result = "drawer: \n";
             for (Food food : foods) {

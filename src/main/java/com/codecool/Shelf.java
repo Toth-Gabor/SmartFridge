@@ -1,14 +1,13 @@
 package com.codecool;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Shelf
 {
     protected int limit;
     protected List<Food> foods;
-    private int buffer;
-    
     
     public Shelf() {
         this.limit = 5;
@@ -44,19 +43,19 @@ public class Shelf
     }
     
     public void removeFoodById(int id){
-        
-        for (int i = 0; i < this.foods.size(); i++) {
-            if (this.foods.get(i).getId() == id){
-                buffer = i;
+    
+        Iterator<Food> foodIterator = getFoods().iterator();
+        while(foodIterator.hasNext()){
+            if (foodIterator.next().getId() == id){
+                foodIterator.remove();
             }
         }
-        this.foods.remove(buffer);
     }
     
     @Override
     public String toString() {
         if (isEmpty()){
-            return "The shelf is empty!";
+            return "This shelf is empty!";
         } else {
             String result = "shelf: \n";
             for (Food food : foods) {
