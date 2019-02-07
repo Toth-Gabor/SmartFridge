@@ -1,6 +1,8 @@
 package com.codecool;
 
-public class Food {
+import java.io.Serializable;
+
+public class Food implements Serializable {
     
     private static int num = 1;
     private int id = 0;
@@ -9,7 +11,6 @@ public class Food {
     private String expDate;
     
     public Food(String type, String name, String expDate) {
-        
         this.id = num;
         this.type = type;
         this.name = name;

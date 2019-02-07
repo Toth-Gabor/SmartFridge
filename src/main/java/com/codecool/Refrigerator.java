@@ -1,14 +1,14 @@
 package com.codecool;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  * Fridge
  */
-public class Refrigerator {
+public class Refrigerator implements Serializable {
     
     private String brand;
     private String color;
@@ -59,12 +59,8 @@ public class Refrigerator {
                 }
             }
         } else if (typePlace == FridgePlaceType.FREEZER){
-            try {
-                if (!freezer.getDrawerByIndex(index).isFull()){
-                    freezer.getDrawerByIndex(index).foods.add(food);
-                }
-            } catch (IndexOutOfBoundsException e){
-                e.printStackTrace();
+            if (!freezer.getDrawerByIndex(index).isFull()){
+                freezer.getDrawerByIndex(index).foods.add(food);
             }
         } else if (typePlace == FridgePlaceType.FRIDGEDOOR){
     
@@ -78,42 +74,19 @@ public class Refrigerator {
         }
     }
     
-    public void removeFood(int id){ //Tesztelni!
+    public void removeFood(int id){
     
         for (Shelf shelf : fridgeDoor.getShelfs()) {
             shelf.removeFoodById(id);
-            
-            /*for (int i = 0; i < shelf.getFoods().size(); i++) {   // Beta verzió :)
-                if (shelf.getFoods().get(i).getName().equals(name)) {
-                    shelf.getFoods().remove(i);
-                }
-            }*/
         }
         for (Shelf shelf : cooler.getShelfs()) {
             shelf.removeFoodById(id);
-            /*for (int i = 0; i < shelf.getFoods().size(); i++) {   // Beta verzió :)
-                if (shelf.getFoods().get(i).getName().equals(name)) {
-                    shelf.getFoods().remove(i);
-                }
-            }*/
         }
         for (Drawer drawer : cooler.getDrawers()) {
             drawer.removeFoodById(id);
-            //drawer.removeFoodByName(name);
-            /*for (int i = 0; i < drawer.getFoods().size(); i++) {   // Beta verzió :)
-                if (drawer.getFoods().get(i).getName().equals(name)) {
-                    drawer.getFoods().remove(i);
-                }
-            }*/
         }
         for (Drawer drawer : freezer.getDrawers()) {
             drawer.removeFoodById(id);
-            //drawer.removeFoodByName(name);
-            /*for (int i = 0; i < drawer.getFoods().size(); i++) {   // Beta verzió :)
-                if (drawer.getFoods().get(i).getName().equals(name)) {
-                    drawer.getFoods().remove(i);
-                }
-            }*/
         }
     }
     
@@ -146,7 +119,7 @@ public class Refrigerator {
     
     
     
-    public List<Food> listFoods(){ //Tesztelni!
+    public List<Food> listFoods(){
         
         List<Food> foodList = new ArrayList<>();
         

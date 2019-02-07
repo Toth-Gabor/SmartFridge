@@ -13,9 +13,11 @@ import java.util.*;
  */
 public class Menu {
     
-    private String[] menuOptions = {"Show fridge status", "list all food", "add", "remove food by id", "update a fridge property", "load", "save (write into file)", "exit"};
+    private String[] menuOptions = {"Show fridge status", "list all food", "add", "remove food by id",
+                                    "update a fridge property", "load", "save (write into file)", "exit"};
     private Scanner scan = new Scanner(System.in);
     private Refrigerator fridge = new Refrigerator("Samsung", "Silver", 7);
+    private FileManager fileManager = new FileManager();
     private String choice;
     private String[] questions = {" food type:", " name:", " expDate:"};
     private String[] answers = new String[3];
@@ -26,59 +28,64 @@ public class Menu {
     public void showMenu() {
         
         while (true) {
-            int counter = 1;
-            System.out.println("\nSmart fridge menu:");
-            System.out.println("------------------");
-            
-            for (String option : menuOptions) {
-                System.out.println(" " + counter + ". " + option);
-                counter++;
-            }
-            System.out.println("-------------------");
-            List<String> menuNumbers = new ArrayList<>(Arrays.asList("1","2","3","4","5","6","7","8"));
-            while(true){
-                System.out.println("Please enter an option.");
-                choice = scan.next();
-                if (!menuNumbers.contains(choice)){
-                    System.out.println("Your choice must be a number between 1 and 8.");
-                } else {
-                    break;
+            try {
+                int counter = 1;
+                System.out.println("\nSmart fridge menu:");
+                System.out.println("------------------");
+    
+                for (String option : menuOptions) {
+                    System.out.println(" " + counter + ". " + option);
+                    counter++;
                 }
-            }
-            switch (choice) {
-                case "1":
-                    option1();
-                    break;
-                case "2":
-                    option2();
-                    break;
-                case "3":
-                    option3();
-                    break;
-                case "4":
-                    option4();
-                    break;
-                case "5":
-                    System.out.println("option 5");
-                    break;
-                case "6":
-                    System.out.println("option 6");
-                    break;
-                case "7":
-                    System.out.println("option 7");
-                    break;
-                case "8":
-                    option8();
-                    break;
+                System.out.println("-------------------");
+                List<String> menuNumbers = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8"));
+                while (true) {
+                    System.out.print("Please enter an option: ");
+                    choice = scan.nextLine();
+                    if (!menuNumbers.contains(choice)) {
+                        System.out.println("Your choice must be a number between 1 and 8");
+                    } else {
+                        break;
+                    }
+                }
+                switch (choice) {
+                    case "1":
+                        option1();
+                        break;
+                    case "2":
+                        option2();
+                        break;
+                    case "3":
+                        option3();
+                        break;
+                    case "4":
+                        option4();
+                        break;
+                    case "5":
+                        System.out.println("option 5");
+                        break;
+                    case "6":
+                        option6();
+                        break;
+                    case "7":
+                        option7();
+                        break;
+                    case "8":
+                        option8();
+                        break;
+                }
+            } catch (IllegalArgumentException ex) {
+                System.out.println(ex.getMessage());
             }
         }
     }
-    private void option1(){
+    
+    private void option1() {
         System.out.println(fridge);
     }
     
-    private void option2(){
-        if (fridge.listFoods().size() == 0){
+    private void option2() {
+        if (fridge.listFoods().size() == 0) {
             System.out.println("The fridge is empty.");
         } else {
             System.out.println("Foods:");
@@ -88,78 +95,78 @@ public class Menu {
         }
     }
     
-    private void option3(){
-        for (int i = 0; i < questions.length; i++) {
-            System.out.println("Please give a(n)" + questions[i]);
-            answers[i] = scan.next();
-        }
-        String coolerPlaceType = "";
-        String index = "";
-        String fridgePlacetype= "";
-        List<String> fridgePlacetypes = new ArrayList<>(Arrays.asList("fridgedoor", "cooler", "freezer"));
-        while (true){
-            System.out.println("Fridge place type:[fridgedoor,cooler,freezer]");
-            fridgePlacetype = scan.next();
-            if (fridgePlacetypes.contains(fridgePlacetype)){break;}
-        }
+    private void option3() {
+        String foodTypeName = askString("food type name");
+        String foodName = askString("food name");
+        String expDate = askString("expiration date (yyyy/mm/dd)");
     
-        if(Refrigerator.FridgePlaceType.valueOf(fridgePlacetype.toUpperCase()) == Refrigerator.FridgePlaceType.COOLER){
+        Food food = new Food(foodTypeName, foodName, expDate);
     
-            List<String> containers = new ArrayList<>(Arrays.asList("shelf", "drawer"));
-            while (true){
-                System.out.println("Cooler place Type:[shelf or drawer]");
-                coolerPlaceType = scan.next();
-                if (containers.contains(coolerPlaceType)){break;}
-            }
-        
-            if (Refrigerator.CoolerPlaceType.valueOf(coolerPlaceType.toUpperCase()) ==
-                Refrigerator.CoolerPlaceType.DRAWER){
-                List<String> drawerIndex = new ArrayList<>(Arrays.asList("1", "2"));
-                while(true){
-                    System.out.println("index: [1 or 2]");
-                    index = scan.next();
-                    if (drawerIndex.contains(index)){break;}
-                    System.out.println("This index does not exist! Try again.");
-                }
-            } else if(Refrigerator.CoolerPlaceType.valueOf(coolerPlaceType.toUpperCase()) ==
-                Refrigerator.CoolerPlaceType.SHELF){
-                List<String> shelfIndex = new ArrayList<>(Arrays.asList("1", "2", "3", "4"));
-                while(true){
-                    System.out.println("index: [1 - 4]");
-                    index = scan.next();
-                    if (shelfIndex.contains(index)){break;}
-                    System.out.println("This index does not exist! Try again.");
-                }
-            }
+        Refrigerator.FridgePlaceType fridgePlaceType = askFridgePlaceType();
+        Refrigerator.CoolerPlaceType coolerPlaceType = null;
+        int index;
+        if (fridgePlaceType == Refrigerator.FridgePlaceType.COOLER) {
+            coolerPlaceType = askCoolerPlaceType();
+        }
+        if (fridgePlaceType == Refrigerator.FridgePlaceType.FRIDGEDOOR) {
+            index = askIndex("food index", FridgeDoor.LIMIT);
+        } else if (fridgePlaceType == Refrigerator.FridgePlaceType.FREEZER) {
+            index = askIndex("food index", Freezer.LIMIT);
         } else {
-            coolerPlaceType = "SHELF";
-            List<String> indexes = new ArrayList<>(Arrays.asList("1", "2", "3"));
-            while(true) {
-                System.out.println("index:");
-                index = scan.next();
-                if(indexes.contains(index)){break;}
-                System.out.println("This index does not exist! Try again.");
+            if (coolerPlaceType == Refrigerator.CoolerPlaceType.DRAWER) {
+                index = askIndex("drawer index", Cooler.DRAWER_LIMIT);
+            } else {
+                index = askIndex("shelf index", Cooler.SHELF_LIMIT);
             }
         }
-    
-        Food food = new Food(answers[0], answers[1], answers[2]);
-        fridge.addFood(Refrigerator.FridgePlaceType.valueOf(fridgePlacetype.toUpperCase()),
-            Refrigerator.CoolerPlaceType.valueOf(coolerPlaceType.toUpperCase()),
-            (Integer.parseInt(index) - 1), food);
+        
+        fridge.addFood(fridgePlaceType, coolerPlaceType, index, food);
     }
     
-    private void option4(){
+    private void option4() { // user inputot kezelni ha betűt ad meg + ha nincs olyan id!
         System.out.println("Type the food id what you want to remove:");
         fridge.removeFood(scan.nextInt());
     }
+    private void option6(){
+        this.fridge = fileManager.fileReader();
+    }
     
-    private void option8(){
-        System.out.println("See you nextLine() time.");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private void option7(){
+        fileManager.fileWriter(fridge);
+    }
+    
+    private void option8() {
+        System.out.println("See you next time.");
         System.exit(0);
+    }
+    
+    private String askString(String type) {
+        System.out.print("Please enter a(n) " + type + ": ");
+        return scan.nextLine();
+    }
+    
+    private int askIndex(String type, int limit) {
+        System.out.print("Please enter a(n) " + type + ": ");
+        int index = Integer.parseInt(scan.nextLine());
+        if (index < 1 || index > limit) {
+            throw new IllegalArgumentException("Invalid index, valid indexes are: 1 to " + limit);
+        }
+        return index - 1;
+    }
+    
+    private Refrigerator.FridgePlaceType askFridgePlaceType() {
+        System.out.print("Please enter the fridge place type " + Arrays.toString(Refrigerator.FridgePlaceType.values()) + ": ");
+        String type = scan.nextLine();
+        return Refrigerator.FridgePlaceType.valueOf(type.toUpperCase());
+    }
+    
+    private Refrigerator.CoolerPlaceType askCoolerPlaceType() {
+        System.out.print("Please enter the cooler place type " + Arrays.toString(Refrigerator.CoolerPlaceType.values()) + ": ");
+        String type = scan.nextLine();
+        try {
+            return Refrigerator.CoolerPlaceType.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            throw new IllegalArgumentException("Wrong cooler place type. Enter a valid value.", ex);
+        }
     }
 }

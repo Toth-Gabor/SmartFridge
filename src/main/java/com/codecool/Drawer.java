@@ -1,21 +1,22 @@
 package com.codecool;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Drawer {
+public class Drawer implements Serializable {
     
-    private int limit;
+    public static final int LIMIT = 5;
+    
     protected List<Food> foods;
     
     public Drawer() {
-        this.limit = 5;
         this.foods = new ArrayList<>();
     }
     
     public boolean isFull() {
-        if (foods.size() == limit){
+        if (foods.size() == LIMIT){
             return true;
         } else {
             return false;
@@ -28,14 +29,6 @@ public class Drawer {
         } else {
             return false;
         }
-    }
-    
-    public int getLimit() {
-        return this.limit;
-    }
-    
-    public void setLimit(int limit) {
-        this.limit = limit;
     }
     
     public List<Food> getFoods() {

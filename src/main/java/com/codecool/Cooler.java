@@ -1,48 +1,38 @@
 package com.codecool;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cooler {
+public class Cooler implements Serializable {
     
-    protected int drawerLimit;
-    protected int shelfLimit;
+    public static final int DRAWER_LIMIT = 2;
+    public static final int SHELF_LIMIT = 3;
+    
     protected boolean fridgeLamp;
     protected List<Drawer> drawers;
     protected List<Shelf> shelfs;
     
     
     public Cooler() {
-    
-        this.shelfLimit = 4;
-        this.drawerLimit = 2;
+        
         this.fridgeLamp = false;
         this.shelfs = new ArrayList<>();
         this.drawers = new ArrayList<>();
         
         try {
-            for (int i = 0; i < drawerLimit; i++) {
+            for (int i = 0; i < DRAWER_LIMIT; i++) {
                 drawers.add(new Drawer());
             }
-            for (int j = 0; j < shelfLimit; j++)
-            {
+            for (int j = 0; j < SHELF_LIMIT; j++) {
                 shelfs.add(new Shelf());
             }
             
-        } catch (NullPointerException e){
-    
+        } catch (NullPointerException e) {
+            
             e.printStackTrace();
         }
     }
-    
-    public int getDrawerLimit() {
-        return drawerLimit;
-    }
-    
-    public int getShelfLimit() {
-        return shelfLimit;
-    }
-    
     
     public List<Drawer> getDrawers() {
         return this.drawers;
@@ -52,11 +42,11 @@ public class Cooler {
         return this.shelfs;
     }
     
-    public Shelf getShelfByIndex(int index){
+    public Shelf getShelfByIndex(int index) {
         return this.shelfs.get(index);
     }
     
-    public Drawer getDrawerByIndex(int index){
+    public Drawer getDrawerByIndex(int index) {
         return this.drawers.get(index);
     }
     
@@ -69,12 +59,12 @@ public class Cooler {
             cooler += " " + count + ". " + shelf + "\n";
             count++;
         }
-        cooler+= "\n";
+        cooler += "\n";
         count = 1;
         for (Drawer drawer : drawers) {
             cooler += " " + count + ". " + drawer + "\n";
             count++;
         }
-        return cooler+= "\n";
+        return cooler += "\n";
     }
 }

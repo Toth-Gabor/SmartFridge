@@ -1,21 +1,22 @@
 package com.codecool;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FridgeDoor {
+public class FridgeDoor implements Serializable {
+
+    public static final int LIMIT = 3;
     
     protected List<Shelf> shelfs;
-    protected int shelfLimit;
     protected boolean doorPosition;
 
     public FridgeDoor()
     {
         this.doorPosition = false;
-        this.shelfLimit = 3;
         this.shelfs =  new ArrayList<>();
         
-        for (int i = 0; i < shelfLimit; i++) {
+        for (int i = 0; i < LIMIT; i++) {
             shelfs.add(new Shelf());
         }
     }
